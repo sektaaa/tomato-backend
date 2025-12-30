@@ -32,7 +32,15 @@ connectDB();
 
 //api endpoints
 app.use("/api/food", foodRouter)
-app.use("/images", express.static('uploads'))
+// app.use("/images", express.static('uploads'))
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/images", express.static(path.join(__dirname, "uploads")));
+
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
